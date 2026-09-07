@@ -2,7 +2,6 @@
 	import BookMark from '#lib/components/ui/BookMark.svelte';
 	import GitHubIcon from '#lib/components/ui/GitHubIcon.svelte';
 	import BookFilters from '#lib/components/book/BookFilters.svelte';
-	import CatalogSize from './CatalogSize.svelte';
 	import ThemeToggle from './ThemeToggle.svelte';
 
 	type Props = {
@@ -25,7 +24,13 @@
 	</a>
 </div>
 <div class="mt-6 border-b border-divider pb-5 dark:border-divider-dark">
-	<CatalogSize count={catalogSize} />
+	{const display = $derived(
+		catalogSize >= 1000 ? `${Math.floor(catalogSize / 1000)}K+` : String(catalogSize)
+	)}
+	<div>
+		<p class="text-2xl font-semibold tracking-tight tabular-nums">{display}</p>
+		<p class="mt-1 text-xs leading-5 text-muted">books from Goodreads. Built on SvelteKit.</p>
+	</div>
 </div>
 <p class="mt-5 mb-4 text-xs font-semibold tracking-wide text-muted uppercase">Filters</p>
 <BookFilters {idPrefix} />
