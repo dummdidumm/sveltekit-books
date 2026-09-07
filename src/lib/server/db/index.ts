@@ -3,8 +3,17 @@ import { neon } from '@neondatabase/serverless';
 import * as schema from './schema';
 import { DATABASE_URL } from '$app/env/private';
 
-if (!DATABASE_URL) throw new Error('DATABASE_URL is not set');
+type Database = ReturnType<typeof create>;
 
-const client = neon(DATABASE_URL);
+let instance: Database | undefined;
 
-export const db = drizzle(client, { schema });
+function create() {
+	if (!DATABASE_URL) throw new Error('DATABASE_URL is not set');
+	return drizzle(neon(DATABASE_URL), { schema });
+}
+
+// Lazily created so importing server modules never throws at module-init time
+// (e.g. during the build's analysis step or when the env var is a placeholder).
+export function getDb(): Database {
+	return (instance ??= create());
+}
