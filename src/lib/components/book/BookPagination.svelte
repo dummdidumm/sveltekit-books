@@ -26,13 +26,7 @@
 
 <nav aria-label="Pagination" class="flex items-center justify-between gap-4">
 	{#if hasPrevious}
-		<a
-			class={stepClass}
-			href={previousHref}
-			aria-label="Previous page"
-			data-sveltekit-preload-data="viewport"
-			{@attach fastLink()}
-		>
+		<a class={stepClass} href={previousHref} aria-label="Previous page" {@attach fastLink()}>
 			<LinkStatus href={previousHref}>
 				<ChevronLeft aria-hidden="true" class="size-4" />
 				Previous
@@ -57,13 +51,7 @@
 	</p>
 
 	{#if hasNext}
-		<a
-			class={stepClass}
-			href={nextHref}
-			aria-label="Next page"
-			data-sveltekit-preload-data="viewport"
-			{@attach fastLink()}
-		>
+		<a class={stepClass} href={nextHref} aria-label="Next page" {@attach fastLink()}>
 			<LinkStatus href={nextHref} hint="start">
 				Next
 				<ChevronRight aria-hidden="true" class="size-4" />
