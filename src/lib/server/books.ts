@@ -92,18 +92,6 @@ export async function getBooksCount(filters: BookFilters): Promise<number> {
 	});
 }
 
-export async function getBookMeta(id: number): Promise<BookMeta | null> {
-	if (usePreviewCatalog) return getPreviewBookMeta(id);
-	return cached(`book:meta:${id}`, HOUR, async () => {
-		const result = await getDb()
-			.select({ id: books.id, title: books.title, description: books.description })
-			.from(books)
-			.where(eq(books.id, id))
-			.limit(1);
-		return result[0] ?? null;
-	});
-}
-
 export async function getBookDetails(id: number): Promise<BookDetails | null> {
 	if (usePreviewCatalog) return getPreviewBookDetails(id);
 	return cached(`book:details:${id}`, HOUR, async () => {
