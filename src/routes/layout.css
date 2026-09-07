@@ -10,14 +10,14 @@
 	--color-surface-dark: #121212;
 	--color-surface: #fafafa;
 
-	--color-primary: #2563eb;
-	--color-primary-dark: #1d4ed8;
-	--color-primary-darker: #1e40af;
-	--color-accent: #2563eb;
-	--color-accent-hover: #1d4ed8;
-	--color-accent-fade: #2563eb22;
-	--color-action: #2563eb;
-	--color-action-hover: #1d4ed8;
+	--color-primary: #ff3e00;
+	--color-primary-dark: #e03600;
+	--color-primary-darker: #b82c00;
+	--color-accent: #ff3e00;
+	--color-accent-hover: #e03600;
+	--color-accent-fade: #ff3e0022;
+	--color-action: #ff3e00;
+	--color-action-hover: #e03600;
 
 	--color-success: #0fa958;
 	--color-danger: #e54848;
@@ -40,11 +40,11 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 .dark {
-	--color-accent: #3b82f6;
-	--color-accent-hover: #2563eb;
-	--color-accent-fade: #3b82f622;
-	--color-action: #3b82f6;
-	--color-action-hover: #2563eb;
+	--color-accent: #ff5c33;
+	--color-accent-hover: #ff3e00;
+	--color-accent-fade: #ff5c3322;
+	--color-action: #ff5c33;
+	--color-action-hover: #ff3e00;
 }
 
 @layer base {
