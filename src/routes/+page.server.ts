@@ -3,7 +3,7 @@ import { toBookFilters, toBookQuery } from '#lib/books/utils.ts';
 import { getBooksCount, getBooksPage } from '#lib/server/books.ts';
 import type { PageServerLoad } from './$types';
 
-export const load = (({ url }) => {
+export const load = (({ url, setHeaders }) => {
 	const searchParams = parseSearchParams(url.searchParams);
 	const query = toBookQuery(searchParams);
 
@@ -13,6 +13,10 @@ export const load = (({ url }) => {
 	books.catch(() => {});
 	const total = getBooksCount(toBookFilters(query));
 	total.catch(() => {});
+
+	setHeaders({
+		'Cache-Control': 'public, max-age=600'
+	});
 
 	return { books, searchParams, total };
 }) satisfies PageServerLoad;
